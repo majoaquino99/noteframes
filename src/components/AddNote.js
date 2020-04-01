@@ -1,29 +1,31 @@
 import React from 'react';
-import ToggleContent from './Toggle';
-import Modal from './Modal';
-import Notes from './Notes';
+import PropTypes from 'prop-types';
 
-const AddNote = () => {
-  return (
-    <div>
-      <ToggleContent 
-        toggle={show =>
-          <button 
-            onClick={show} 
-            className='addNewNote'>Add Note
-          </button>}
-        content={hide => (
-          <Modal>
-            <button
-              onClick={hide}>
+import NewNote from './NewNote';
+import Portal from './Portal';
+import ToggleContent from './Toggle';
+
+
+const AddNote = ({eventAddNotes}) => {
+	return (
+		<div>
+			<ToggleContent  
+				content={hide => (
+					<Portal>
+						<button className='btn'
+							onClick={hide}>
                 X
-            </button>
-            <Notes/>
-          </Modal>
-        )}
-      />     
-    </div>    
-  );
+						</button>
+						<NewNote addNote={eventAddNotes} />         
+					</Portal>
+				)}
+			/>     
+		</div>    
+	);
+};
+
+AddNote.propTypes = {
+	eventAddNotes: PropTypes.func.isRequired,
 };
 
 export default AddNote; 

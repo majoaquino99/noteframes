@@ -37,12 +37,12 @@ module.exports = {
         "no-multi-spaces": 1,
         "object-property-newline": 1,
         "padded-blocks": [1, "never"],
-        "space-before-blocks": 1,
+        "space-before-blocks": 2,
         "space-in-parens": 1,
         "spaced-comment": 1,
         "quotes": [1, "single"],
         "id-length": [1, { "exceptions": ["i", "j", "x"] }],
-        "indent": [1, 2],
+        "indent": ["error", "tab"],
         "no-array-constructor": 1,
     }
 };

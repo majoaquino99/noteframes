@@ -1,17 +1,18 @@
 import React from 'react';
-import AddNote from './components/AddNote';
+import NotesInterface from './components/NotesInterface';
+import Navbar from './components/Navbar';
 
 
 function App() {
-  return (
-    <div className='app'>
-      <header>
-        <h1>My Notes</h1>
-      </header>
-      <div id="modal-root"></div> 
-      <AddNote/>   
-    </div>    
-  );
+	return (
+		<div className='app'>
+			<Navbar/>
+			<div id="modal-root">			
+				<NotesInterface/>	
+			</div>
+			
+		</div>    
+	);
 }
 
 
