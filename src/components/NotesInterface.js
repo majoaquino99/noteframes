@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import AddNote from './AddNote';
 import NoteList from './NoteList';
+import Navbar from './Navbar';
 
 
 const NotesInterface = () => {
@@ -18,26 +19,29 @@ const NotesInterface = () => {
 	};
 
 	return (
-		<div className='grid'>
-			<AddNote eventAddNotes={addNote}/>   
-			{notes.map(note => (
-				<NoteList 
-					key={note} 
-					note={note}
-				> 
-					<div className='btns'>
-						<button 
-							className='btn' 
-							onClick={() => deleteNote(note)}>
+		<div id='modal-root'>			
+			<Navbar/>
+			<div className='grid'>
+				<AddNote eventAddNotes={addNote}/>   
+				{notes.map((note, index) => (
+					<NoteList 
+						key={index} 
+						note={note}
+					> 
+						<div className='btns'>
+							<button 
+								className='btn' 
+								onClick={() => deleteNote(note)}>
           Delete
-						</button>
-						<button 
-							className='btn'>
+							</button>
+							<button 
+								className='btn'>
           Edit
-						</button>   
-					</div>         
-				</NoteList>
-			))}
+							</button>   
+						</div>         
+					</NoteList>
+				))}
+			</div>
 		</div>
 	);
 };

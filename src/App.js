@@ -1,20 +1,25 @@
 import React from 'react';
-import NotesInterface from './components/NotesInterface';
-import Navbar from './components/Navbar';
+// import NotesInterface from './components/NotesInterface';
+import Login from './components/Login';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 function App() {
-	return (
+	return (				
 		<div className='app'>
-			<Navbar/>
-			<div id="modal-root">			
-				<NotesInterface/>	
-			</div>
+			<Router>
+				<Switch>
+					<Route exact path = "/" component = {Login}/>					
+					{/* <Route path = "/Home" component = {NotesInterface} />	 */}											
+				</Switch>
+			</Router>
 			
-		</div>    
+			
+		</div> 		   
 	);
 }
 
 
 export default App;
+
 
