@@ -7,25 +7,25 @@ import ToggleContent from './Toggle';
 
 
 const AddNote = ({eventAddNotes}) => {
-	return (
-		<div>
-			<ToggleContent  
-				content={hide => (
-					<Portal>
-						<button className='btn'
-							onClick={hide}>
+    return (
+        <div>
+            <ToggleContent  
+                content={hide => (
+                    <Portal>
+                        <button className='btn'
+                            onClick={hide}>
                 X
-						</button>
-						<NewNote addNote={eventAddNotes} />         
-					</Portal>
-				)}
-			/>     
-		</div>    
-	);
+                        </button>
+                        <NewNote addNote={eventAddNotes} />         
+                    </Portal>
+                )}
+            />     
+        </div>    
+    );
 };
 
 AddNote.propTypes = {
-	eventAddNotes: PropTypes.func.isRequired,
+    eventAddNotes: PropTypes.func.isRequired,
 };
 
 export default AddNote; 

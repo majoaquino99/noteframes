@@ -4,46 +4,46 @@ import NoteList from './NoteList';
 import Navbar from './Navbar';
 
 
-const NotesInterface = () => {
-	const [notes, setNotes] = useState([]);
+const NotesInterface = ({ handleLogout }) => {
+    const [notes, setNotes] = useState([]);
 
-	const addNote = note => {
-		const array = [...notes];
-		array.push(note);
-		setNotes(array);
-	};
+    const addNote = note => {
+        const array = [...notes];
+        array.push(note);
+        setNotes(array);
+    };
   
-	const deleteNote = note => {
-		const array = notes.filter(n => n !== note);
-		setNotes(array);
-	};
+    const deleteNote = note => {
+        const array = notes.filter(n => n !== note);
+        setNotes(array);
+    };
 
-	return (
-		<div id='modal-root'>			
-			<Navbar/>
-			<div className='grid'>
-				<AddNote eventAddNotes={addNote}/>   
-				{notes.map((note, index) => (
-					<NoteList 
-						key={index} 
-						note={note}
-					> 
-						<div className='btns'>
-							<button 
-								className='btn' 
-								onClick={() => deleteNote(note)}>
+    return (
+        <div id='modal-root'>			
+            <Navbar logout = {handleLogout}/>
+            <div className='grid'>
+                <AddNote eventAddNotes={addNote}/>   
+                {notes.map((note, index) => (
+                    <NoteList 
+                        key={index} 
+                        note={note}
+                    > 
+                        <div className='btns'>
+                            <button 
+                                className='btn' 
+                                onClick={() => deleteNote(note)}>
           Delete
-							</button>
-							<button 
-								className='btn'>
+                            </button>
+                            <button 
+                                className='btn'>
           Edit
-							</button>   
-						</div>         
-					</NoteList>
-				))}
-			</div>
-		</div>
-	);
+                            </button>   
+                        </div>         
+                    </NoteList>
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default NotesInterface;

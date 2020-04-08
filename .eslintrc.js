@@ -42,7 +42,7 @@ module.exports = {
         "spaced-comment": 1,
         "quotes": [1, "single"],
         "id-length": [1, { "exceptions": ["i", "j", "x"] }],
-        "indent": ["error", "tab"],
+        "indent": ["error"],
         "no-array-constructor": 1,
     }
 };
