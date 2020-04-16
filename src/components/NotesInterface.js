@@ -4,7 +4,7 @@ import NoteList from './NoteList';
 import Navbar from './Navbar';
 
 
-const NotesInterface = ({ handleLogout }) => {
+const NotesInterface = () => {
     const [notes, setNotes] = useState([]);
 
     const addNote = note => {
@@ -20,8 +20,8 @@ const NotesInterface = ({ handleLogout }) => {
 
     return (
         <div id='modal-root'>			
-            <Navbar logout = {handleLogout}/>
-            <div className='grid'>
+            <Navbar/>
+            <div className ='grid'>
                 <AddNote eventAddNotes={addNote}/>   
                 {notes.map((note, index) => (
                     <NoteList 

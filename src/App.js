@@ -1,52 +1,44 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import React, { useState } from 'react';
-// import Login from './components/Login';
+import React, { useEffect } from 'react';
 import { 
     BrowserRouter as Router,  
     Route,
     Switch,
+    Redirect,
 } from 'react-router-dom';
 import NotesInterface from './components/NotesInterface';
-import Landing from './components/Landing';
 import ProtectedRoute from './components/ProtectedRoute';
 import Unauthorized from './components/Unauthorized/Unauthorized';
+import { AuthProvider } from './firebase/Auth';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import firebaseApp from './firebase/firebaseConfig';
+
+const LogOut = () => {
+    useEffect(() => {
+        firebaseApp.auth().signOut();
+    }, []);
+    return <Redirect to = {'/'} />;
+};
 
 
-function App() {
-    const [user, setUser] = useState(false);
-
-    const handleLogin = error => {
-        error.preventDefault();
-        setUser(true);
-    };
-	
-    const handleLogout = error => {
-        error.preventDefault();
-        setUser(false);
-    };
-	
+function App() {	
     return (				
-        <div className='app'>
-            <Router>
-                <Switch>
-                    <Route exact path = "/" 
-						   handleLogin = {handleLogin}
-						   render = {props =>
-						    <Landing {...props} 
-                                user= {user.toString()} 
-                                handleLogin = {handleLogin} /> }
-						   />					
-                    <ProtectedRoute 
-                        exact path = "/home" 
-                        component = {NotesInterface} 
-                        handleLogout = {handleLogout}
-                        user={user}
-					 />	
-					 <Route exact path= '/unauthorized' component = {Unauthorized} />											
-                </Switch>
-            </Router>
-			
-			
+        <div className ='app'>
+            <AuthProvider>
+                <Router>
+                    <Switch>
+                        <Route exact path = '/' component= {Login} /> 
+                        <Route exact path = '/signup' component= {Signup}/>
+                        <ProtectedRoute 
+                            exact path = "/home" 
+                            component = {NotesInterface} 
+                        />	
+                        <Route exact path = '/unauthorized' component = {Unauthorized} />			
+                        <Route exact path= "/auth/logout" component={LogOut} />							
+                    </Switch>
+                </Router>
+            </AuthProvider>           
         </div> 		   
     );
 }
