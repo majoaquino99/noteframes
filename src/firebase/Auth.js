@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 /* createContext() - Tool that allows you to propagate data 
 through the whole React component tree.  */
-export const AuthContext = React.createContext();
+export const UserContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
     const [ currentUser, setCurrentUser ] = useState(null);
@@ -25,13 +25,13 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider
+        <UserContext.Provider
             value={{
                 currentUser
             }}
         >
             {children}
-        </AuthContext.Provider>
+        </UserContext.Provider>
     );
 };
 

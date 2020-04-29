@@ -1,25 +1,25 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { 
     BrowserRouter as Router,  
     Route,
     Switch,
-    Redirect,
 } from 'react-router-dom';
-import NotesInterface from './components/NotesInterface';
-import ProtectedRoute from './components/ProtectedRoute';
-import Unauthorized from './components/Unauthorized/Unauthorized';
+
 import { AuthProvider } from './firebase/Auth';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import firebaseApp from './firebase/firebaseConfig';
+import ProtectedRoute from './components/ProtectedRoute';
+import Unauthorized from './components/Unauthorized/Unauthorized';
+import Notestore from './components/Notestore';
 
-const LogOut = () => {
+
+/* const LogOut = () => {
     useEffect(() => {
         firebaseApp.auth().signOut();
     }, []);
     return <Redirect to = {'/'} />;
-};
+}; */
 
 
 function App() {	
@@ -32,10 +32,9 @@ function App() {
                         <Route exact path = '/signup' component= {Signup}/>
                         <ProtectedRoute 
                             exact path = "/home" 
-                            component = {NotesInterface} 
+                            component = {Notestore} 
                         />	
-                        <Route exact path = '/unauthorized' component = {Unauthorized} />			
-                        <Route exact path= "/auth/logout" component={LogOut} />							
+                        <Route exact path = '/unauthorized' component = {Unauthorized} />									
                     </Switch>
                 </Router>
             </AuthProvider>           

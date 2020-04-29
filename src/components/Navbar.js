@@ -1,6 +1,13 @@
 import React from 'react';
+import { withRouter, useHistory } from 'react-router-dom';
+import firebaseApp from '../firebase/firebaseConfig';
 
 const Navbar = () => {
+    const history = useHistory();
+    const handleLogOut = () => {
+        firebaseApp.auth().signOut(); 
+        history.push('/');
+    };
     return (
         <nav>
             <ul className="menu">
@@ -8,7 +15,7 @@ const Navbar = () => {
                 <li className="item"><a href="https://github.com/majoaquino99/noteframes" 
                     target="_blank" 
                     rel="noopener noreferrer">Github</a></li>
-                <li className="item button"><a href="/auth/logout">Log Out</a></li>
+                <li className="item button" onClick={handleLogOut}>Log Out</li>
                 <li className="toggle"><span className="bars"></span></li>
             </ul>
         </nav>
@@ -16,4 +23,4 @@ const Navbar = () => {
 };
 
 
-export default Navbar;
+export default withRouter(Navbar);
